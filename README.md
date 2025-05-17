@@ -43,12 +43,44 @@
 Open `index.html` in your browser. No install or server needed (provided your browser supports ES6 and local JS loading).  
 **Note:** Some browsers have strict local file security that may prevent full functionality; Chrome with proper flags or Firefox is recommended.
 
-## Screenshots
-![Training Screenshot](screenshots/train.jpg)
-![training phase Screenshot](screenshots/training_phase.jpg)
-![Prediction phase](screenshots/prediction_wand.jpg)
-![1 feature Screenshot](screenshots/low_feature.png)
-![Wrong prediction](screenshots/wrong_prediction.jpg)
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><strong>🦐 Emoji Panel and what the model "sees"</strong><br><img src="screenshots/train.jpg" width="300"><br><em>Status: Collecting Data</em></td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <td align="center"><strong>✨ Prediction with Feature Mapping</strong><br><img src="screenshots/prediction_wand.jpg" width="500"><br><em>Actual: 🪄 | Predicted: 🪄</em></td>
+  </tr>
+</table>
+
+
+---
+
+<table>
+  <tr>
+    <td align="center" colspan="2"><strong>⏳ Model Training Phase</strong></td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2"><img src="screenshots/training_phase.jpg" width="600"><br><em>Status: Training Model...</em></td>
+  </tr>
+</table>
+
+
+---
+
+<table>
+  <tr>
+    <td align="center"><strong>⚠️ Incorrect Prediction</strong><br><img src="screenshots/wrong_prediction.jpg" width="300"><br><em>Actual: 🧥 | Predicted: 🌻 </em></td>
+    <td align="center"><strong>🧩 Another Prediction Example</strong><br><img src="screenshots/low_feature.png" width="300"><br><em>Actual: 🧩 | Predicted: 🔋</em></td>
+
+  </tr>
+</table>
+
 
 
 ## Features to add
