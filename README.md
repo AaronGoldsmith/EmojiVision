@@ -1,6 +1,6 @@
-# Emoji Trainer
+# Emoji Vision
 
-**Emoji Trainer** is an interactive, browser-based project that demonstrates how computers can learn to classify and recognize emojis by extracting simple visual features, using JavaScript, p5.js, and TensorFlow.js.
+[**Emoji Vision**](https://aarongoldsmith.github.io/EmojiVision/) is an interactive, browser-based project that demonstrates how computers can learn to classify and recognize emojis by extracting simple visual features, using JavaScript, p5.js, and TensorFlow.js.
 
 ## Features
 
@@ -75,7 +75,7 @@ Open `index.html` in your browser. No install or server needed (provided your br
 
 <table>
   <tr>
-    <td align="center"><strong>⚠️ Incorrect Prediction</strong><br><img src="screenshots/wrong_prediction.jpg" width="300"><br><em>Actual: 🧥 | Predicted: 🌻 </em></td>
+    <td align="center"><strong>⚠️ Incorrect Prediction</strong><br><img src="screenshots/wrong_prediction.jpg" width="300"><br><em>Actual: 🧥 | Predicted: 🌼 </em></td>
     <td align="center"><strong>🧩 Another Prediction Example</strong><br><img src="screenshots/low_feature.png" width="300"><br><em>Actual: 🧩 | Predicted: 🔋</em></td>
 
   </tr>

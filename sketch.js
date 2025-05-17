@@ -1,5 +1,5 @@
 // =======================================
-// Emoji Trainer Sketch (p5.js UI layer)
+// Emoji Vision Sketch (p5.js UI layer)
 // =======================================
 // This file contains ONLY p5.js setup, draw, and UI logic.
 // All model/ML logic should be called from ml/model.js!
