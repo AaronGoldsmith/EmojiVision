@@ -1,0 +1,5 @@
+# Mac os files
+.DS_Store
+
+# Local Development
+.goose
