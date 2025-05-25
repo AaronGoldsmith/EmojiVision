@@ -100,7 +100,7 @@ function draw() {
       statusBadge.hide();
     }
     window.drawMainApp({
-      statusDisplay: statusBadge, // now statusBadge
+      statusBadge: statusBadge, // now statusBadge
       trainingProgressDisplay,
       inputRows,
       inputCols,

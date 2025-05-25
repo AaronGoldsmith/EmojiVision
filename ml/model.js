@@ -48,7 +48,7 @@ window.initializeAndStartCollection = function() {
   inputRows.attribute('disabled', true);
   inputCols.attribute('disabled', true);
   trainingProgressDisplay.hide();
-  statusDisplay.html('Status: Collecting Data...');
+  statusBadge.html('Status: Collecting Data...');
   window.updateFrameRate();
 };
 
@@ -60,7 +60,7 @@ window.resetSketch = function() {
   resetButton.attribute('disabled', true);
   inputRows.removeAttribute('disabled');
   inputCols.removeAttribute('disabled');
-  statusDisplay.html('Status: Initial. Configure and start.');
+  statusBadge.html('Status: Initial. Configure and start.');
   trainingProgressDisplay.hide().html('');
   window.results = [];
   window.idx = 0;
@@ -184,7 +184,7 @@ window.computeColorFeatures = function(panelXOffset = 0, panelYOffset = 0) {
 // --- Training & Prediction ---
 window.trainModel = async function() {
   if (results.length === 0) {
-    console.error("No data collected."); statusDisplay.html("Error: No data for training.");
+    console.error("No data collected."); statusBadge.html("Error: No data for training.");
     trainingProgressDisplay.html("Training failed: No data.").show(); resetButton.removeAttribute('disabled'); return;
   }
   const FEATURE_LEN = rows * cols * 3;
@@ -194,7 +194,7 @@ window.trainModel = async function() {
     return d.length === FEATURE_LEN;
   });
   if (!validData) {
-    statusDisplay.html("Error: Feature length mismatch."); trainingProgressDisplay.html("Training failed: Data error.").show();
+    statusBadge.html("Error: Feature length mismatch."); trainingProgressDisplay.html("Training failed: Data error.").show();
     resetButton.removeAttribute('disabled'); return;
   }
   const X = tf.tensor2d(X_data, [results.length, FEATURE_LEN]);
@@ -219,13 +219,13 @@ window.trainModel = async function() {
       onTrainEnd: (logs) => {
         console.log("Training finished", logs.acc, logs.loss);
         window.state = "predict"; window.idx = 0;
-        statusDisplay.html('Status: Predicting');
+        statusBadge.html('Status: Predicting');
         trainingProgressDisplay.html(`Training complete! Final Acc: ${logs.acc ? logs.acc.toFixed(4) : 'N/A'}`);
       }
     }
   }).catch(err => {
     console.error("Training Error:", err); trainingProgressDisplay.html(`Training Error: ${err.message}`);
-    statusDisplay.html('Status: Training Failed');
+    statusBadge.html('Status: Training Failed');
   });
   tf.dispose([X, Y]);
 };
@@ -252,7 +252,7 @@ window.predictTF = function(cov) {
 
 // --- Main App Render (called from sketch.js) ---
 window.drawMainApp = function({
-  statusDisplay, trainingProgressDisplay, inputRows, inputCols, startButton, resetButton, checkboxGrid, frameRateSlider, checkboxAutoRunPredictions
+  statusBadge, trainingProgressDisplay, inputRows, inputCols, startButton, resetButton, checkboxGrid, frameRateSlider, checkboxAutoRunPredictions
 }) {
   background(255);
   window.updateFrameRate();
@@ -272,7 +272,7 @@ window.drawMainApp = function({
   }
   let e = emojis[window.idx % emojis.length];
   if (window.state === "collect") {
-    statusDisplay.html('Status: Collecting Data...');
+    statusBadge.html('Status: Collecting Data...');
     window.drawEmojiPanel(e, 0, panelYOffset);
     let cov = window.computeColorFeatures(0, panelYOffset);
     if (checkboxGrid.checked()) window.drawOverlay(0, panelYOffset);
@@ -285,7 +285,7 @@ window.drawMainApp = function({
       window.trainModel();
     }
   } else if (window.state === "train") {
-    statusDisplay.html('Status: Training Model...');
+    statusBadge.html('Status: Training Model...');
     trainingProgressDisplay.show();
     fill(0); textSize(28); textAlign(CENTER, CENTER);
     text("Training Model… please wait", (panelSize * 2) / 2, panelSize / 2 + panelYOffset);
@@ -329,7 +329,7 @@ window.drawMainApp = function({
     text("Loss (red)", graphX, graphY - 5);
     text("Accuracy (green)", graphX + 120, graphY - 5);
   } else if (window.state === "predict") {
-    statusDisplay.html('Status: Predicting');
+    statusBadge.html('Status: Predicting');
     trainingProgressDisplay.hide();
     window.drawEmojiPanel(e, 0, panelYOffset);
     let cov = window.computeColorFeatures(0, panelYOffset);
